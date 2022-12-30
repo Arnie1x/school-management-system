@@ -17,7 +17,8 @@ class DepartmentActivityFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title'=>fake()->sentence(4),
+            'description'=>fake()->sentence(10),
         ];
     }
 }

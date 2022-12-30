@@ -17,7 +17,8 @@ class UnitFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'=>fake()->sentence(4),
+            'description'=>fake()->sentence(10)
         ];
     }
 }

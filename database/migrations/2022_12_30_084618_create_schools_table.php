@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
-            $table->string('school_name')->nullable(false);
+            $table->string('name')->nullable(false);
             $table->foreignId('administrator')->constrained('lecturers');
             $table->timestamps();
         });

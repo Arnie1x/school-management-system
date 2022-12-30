@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('department_activities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('department')->constrained('departments');
-            $table->string('activity_title')->nullable(false);
-            $table->string('activity_description');
+            $table->foreignId('department_id')->constrained('departments');
+            $table->foreignId('author')->constrained('users');
+            $table->string('title')->nullable(false);
+            $table->string('description');
             $table->timestamps();
         });
     }

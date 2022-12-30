@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('units', function (Blueprint $table) {
             $table->id();
             $table->foreignId('course')->constrained('courses');
-            $table->string('unit_name')->nullable(false);
-            $table->string('unit_description');
-            $table->foreignId('lecturer')->constrained('lecturers');
+            $table->string('name')->nullable(false);
+            $table->string('description');
+            $table->foreignId('administrator')->constrained('lecturers');
             $table->timestamps();
         });
     }
