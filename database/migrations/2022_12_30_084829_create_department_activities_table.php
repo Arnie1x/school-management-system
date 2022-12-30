@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('department_activities', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('department')->constrained('departments');
+            $table->string('activity_title')->nullable(false);
+            $table->string('activity_description');
             $table->timestamps();
         });
     }
