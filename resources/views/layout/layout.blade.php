@@ -18,7 +18,9 @@
 
         <div class="content-wrapper">
 
-          @yield('content')
+          <div class="container">
+            @yield('content')
+          </div>
 
           @include('layout.partials.footer')
 

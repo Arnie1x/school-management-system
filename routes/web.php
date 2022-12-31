@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\UnitActivityController;
+use App\Http\Controllers\UnitController;
+use App\Models\Department;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layout/layout');
-});
+Route::get('/', [UnitController::class, 'index']);
+
+Route::get('/units/{id}', [UnitController::class, 'show']);
+
+Route::get('/units/{id}/{activity_id}', [UnitActivityController::class, 'showFromUnit']);

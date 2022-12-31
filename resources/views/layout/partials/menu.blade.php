@@ -81,28 +81,28 @@
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-layout"></i>
-          <div>Courses</div>
+          <div>Units</div>
         </a>
 
         <ul class="menu-sub">
           <li class="menu-item">
             <a href="#" class="menu-link">
-              <div>New Course</div>
+              <div>New Unit</div>
             </a>
           </li>
           <li class="menu-item">
             <a href="#" class="menu-link">
-              <div>Course 1</div>
+              <div>Unit 1</div>
             </a>
           </li>
           <li class="menu-item">
             <a href="#" class="menu-link">
-              <div>Course 2</div>
+              <div>Unit 2</div>
             </a>
           </li>
           <li class="menu-item">
             <a href="#" class="menu-link">
-              <div>Course 3</div>
+              <div>Unit 3</div>
             </a>
           </li>
         </ul>
