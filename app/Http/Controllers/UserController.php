@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\Department;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -60,5 +62,19 @@ class UserController extends Controller
 
 
         return redirect('/');
+    }
+
+    public function studentApplication() {
+        return view('student/register', [
+            'courses' => Course::all()
+        ]);
+    }
+    public function lecturerApplication() {
+        return view('lecturer/register');
+    }
+    public function staffApplication() {
+        return view('staff/register', [
+            'departments' => Department::all()
+        ]);
     }
 }

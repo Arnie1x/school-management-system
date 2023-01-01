@@ -23,14 +23,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Root Route
-Route::get('/', [UnitController::class, 'index'])->middleware('student');
+Route::get('/', [UnitController::class, 'index']);
 
 // Authentication Routes
 Route::get('/login', function() {
     return view('authentication/login');
 });
 
-Route::get('/register', [UserController::class, 'create'])->middleware('guest');
+Route::get('/register', [UserController::class, 'create']);
+
+Route::get('/register/student', [UserController::class, 'studentApplication']);
+
+Route::get('/register/lecturer', [UserController::class, 'lecturerApplication']);
+
+Route::get('/register/staff', [UserController::class, 'staffApplication']);
 
 Route::post('/users', [UserController::class, 'store']);
 
