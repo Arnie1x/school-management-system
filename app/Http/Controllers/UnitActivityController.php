@@ -39,4 +39,9 @@ class UnitActivityController extends Controller
         
         return Redirect::to('/units/'.$id);
     }
+    public function delete($id, $activity_id) {
+        UnitActivity::destroy($activity_id);
+
+        return redirect()->back();
+    }
 }

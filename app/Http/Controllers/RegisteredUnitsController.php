@@ -12,7 +12,7 @@ class RegisteredUnitsController extends Controller
 {
     public function index() {
         return view('units/all_units', [
-            'units' => Unit::all()
+            'units' => Unit::latest()->paginate(9)
         ]);
     }
 

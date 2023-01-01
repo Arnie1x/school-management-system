@@ -27,4 +27,7 @@
     </a>
     @endforeach
 </div>
+<div class="d-flex justify-content-center mt-5">
+    {!! $units->links() !!}
+</div>
 @endsection

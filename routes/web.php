@@ -39,7 +39,11 @@ Route::get('/units/{id}/create', [UnitActivityController::class, 'create']);
 
 Route::post('/units/{id}/create', [UnitActivityController::class, 'store']);
 
+Route::get('/units/{id}/delete', [UnitController::class, 'delete']);
+
 Route::get('/units/{id}/{activity_id}', [UnitActivityController::class, 'showFromUnit']);
+
+Route::get('/units/{id}/{activity_id}/delete', [UnitActivityController::class, 'delete']);
 
 // Course Routes
 Route::post('/courses/create', [CourseController::class, 'store']);
@@ -61,3 +65,13 @@ Route::get('/departments/{id}', [DepartmentController::class, 'show']);
 Route::get('/departments/{id}/create', [DepartmentActivityController::class, 'create']);
 
 Route::post('/departments/{id}/create', [DepartmentActivityController::class, 'store']);
+
+Route::get('/departments/{id}/delete', [DepartmentController::class, 'delete']);
+
+Route::get('/departments/{id}/{activity_id}/delete', [DepartmentActivityController::class, 'delete']);
+
+// Admin Routes
+
+Route::get('/admin', function() {
+    return view('admin/admin');
+});

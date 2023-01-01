@@ -39,4 +39,9 @@ class DepartmentActivityController extends Controller
         
         return Redirect::to('/');
     }
+    public function delete($id, $activity_id) {
+        DepartmentActivity::destroy($activity_id);
+
+        return redirect()->back();
+    }
 }

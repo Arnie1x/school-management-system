@@ -19,7 +19,6 @@ class DepartmentController extends Controller
         ]);
     }
 
-    // Show one Unit
     public function show($id)
     {
         return view('departments/department', [
@@ -39,6 +38,11 @@ class DepartmentController extends Controller
 
         Department::create($formFields);
         
+        return Redirect::to('/');
+    }
+    public function delete($id) {
+        Department::destroy($id);
+
         return Redirect::to('/');
     }
 }

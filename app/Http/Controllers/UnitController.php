@@ -13,7 +13,7 @@ class UnitController extends Controller
     // Show all Units
     public function index() {
         return view('main_student', [
-            'units' => Unit::all()
+            'units' => Unit::latest()->paginate(9)
         ]);
     }
 
@@ -28,7 +28,7 @@ class UnitController extends Controller
 
     public function create() {
         return view('units/create', [
-            'courses' => Course::all()
+            'courses' => Course::all(),
         ]);
     }
     public function store(Request $request) {
@@ -41,6 +41,11 @@ class UnitController extends Controller
 
         Unit::create($formFields);
         
+        return Redirect::to('/');
+    }
+    public function delete($id) {
+        Unit::destroy($id);
+
         return Redirect::to('/');
     }
 }
