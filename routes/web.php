@@ -21,4 +21,10 @@ Route::get('/', [UnitController::class, 'index']);
 
 Route::get('/units/{id}', [UnitController::class, 'show']);
 
+Route::get('/units/create', [UnitController::class, 'create']);
+
+Route::get('/units/{id}/create', [UnitActivityController::class, 'create']);
+
+Route::post('/units/{id}/create', [UnitActivityController::class, 'store']);
+
 Route::get('/units/{id}/{activity_id}', [UnitActivityController::class, 'showFromUnit']);

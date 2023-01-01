@@ -18,9 +18,13 @@ class UnitController extends Controller
     // Show one Unit
     public function show($id)
     {
-        return view('unit', [
+        return view('units/unit', [
             'unit' => Unit::find($id),
             'activities' => UnitActivity::findFromUnit($id)
         ]);
+    }
+
+    public function create() {
+        return view('units/create');
     }
 }
