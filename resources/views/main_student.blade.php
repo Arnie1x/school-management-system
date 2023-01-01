@@ -4,7 +4,10 @@
 
 <div class="d-flex flex-row justify-content-between align-items-end">
     <p class="display-4 mt-3 text-primary">My Units</p>
-    <div><a href="" class="btn btn-primary me-2 mb-4">New Unit</a></div>
+    <div>
+        <a href="units/create" class="btn btn-primary me-2 mb-4">New Unit</a>
+        <a href="units/register" class="btn btn-primary me-2 mb-4">Register for Unit</a>
+    </div>
 </div>
 
 @if (count($units) == 0)

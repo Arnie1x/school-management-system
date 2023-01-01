@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Department;
-use App\Models\DepartmentActivity;
-use Illuminate\Http\Request;
 use Nette\Utils\Random;
+use App\Models\Department;
+use Illuminate\Http\Request;
+use App\Models\DepartmentActivity;
+use Illuminate\Support\Facades\Redirect;
 
 class DepartmentController extends Controller
 {
     public function index() {
         $random_department = rand(0, count(Department::all()) - 1);
-        return view('main_staff', [
+        return view('departments/department', [
             'department' => Department::find($random_department),
             'departments' => Department::all(),
             'activities' => DepartmentActivity::findFromDepartment($random_department),
@@ -21,9 +22,23 @@ class DepartmentController extends Controller
     // Show one Unit
     public function show($id)
     {
-        return view('department', [
-            'department' => Department::find($id)
-            // 'activities' => UnitActivity::findFromUnit($id)
+        return view('departments/department', [
+            'department' => Department::find($id),
+            'activities' => DepartmentActivity::findFromDepartment($id),
         ]);
+    }
+
+    public function create() {
+        return view('departments/create');
+    }
+    public function store(Request $request) {
+        $formFields = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        Department::create($formFields);
+        
+        return Redirect::to('/');
     }
 }

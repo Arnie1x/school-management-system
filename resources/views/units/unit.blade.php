@@ -4,7 +4,7 @@
     <!-- Unit -->
     <div class="d-flex flex-row justify-content-between align-items-end">
       <p class="display-4 mt-3 text-primary">{{$unit['name']}}</p>
-      <div><a href="/units/{{$unit['id']}}/create" class="btn btn-primary me-2 mb-4">New Activity</a></div>
+      <a href="/units/{{$unit['id']}}/create" class="btn btn-primary me-2 mb-4">New Activity</a>
     </div>
     <p>{{$unit['description']}}</p>
 
