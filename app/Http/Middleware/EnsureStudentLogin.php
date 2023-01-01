@@ -19,13 +19,14 @@ class EnsureStudentLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        $student = Student::query()->where('user_id', auth()->user()->id);
-
-        if (isEmpty($student)) {
-            return back();
+        if (auth()->user()) {
+            $student = Student::query()->where('user_id', auth()->user()->id);
+            if ($student) {
+                return $next($request);
+            }
         }
         else {
-            return $next($request);
+            return back();
         }
     }
 }

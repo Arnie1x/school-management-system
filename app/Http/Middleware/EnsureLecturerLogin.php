@@ -19,13 +19,15 @@ class EnsureLecturerLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        $lecturer = Lecturer::query()->where('user_id', auth()->user()->id);
-
-        if (isEmpty($lecturer)) {
-            return back();
+        
+        if (auth()->user()) {
+            $lecturer = Lecturer::query()->where('user_id', auth()->user()->id);
+            if ($lecturer) {
+                return $next($request);
+            }
         }
         else {
-            return $next($request);
+            return back();
         }
     }
 }

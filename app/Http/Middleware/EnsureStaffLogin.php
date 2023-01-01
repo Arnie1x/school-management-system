@@ -18,13 +18,15 @@ class EnsureStaffLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        $staff = Staff::query()->where('user_id', auth()->user()->id);
-
-        if (isEmpty($staff)) {
-            return back();
+        
+        if (auth()->user()) {
+            $staff = Staff::query()->where('user_id', auth()->user()->id);
+            if ($staff) {
+                return $next($request);
+            }
         }
         else {
-            return $next($request);
+            return back();
         }
     }
 }

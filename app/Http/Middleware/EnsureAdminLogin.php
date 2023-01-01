@@ -16,6 +16,15 @@ class EnsureAdminLogin
      */
     public function handle(Request $request, Closure $next)
     {
+        // if (auth()->user()) {
+        //     $student = Student::query()->where('user_id', auth()->user()->id);
+        //     if ($student) {
+        //         return $next($request);
+        //     }
+        // }
+        // else {
+        //     return back();
+        // }
         return $next($request);
     }
 }

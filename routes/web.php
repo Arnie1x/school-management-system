@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Root Route
-Route::get('/', [UnitController::class, 'index']);
+Route::get('/', [UnitController::class, 'index'])->middleware('student');
 
 // Authentication Routes
 Route::get('/login', function() {
