@@ -19,10 +19,19 @@
         <div class="content-wrapper">
 
           <div class="container">
-            @yield('content')
-          </div>
+            @auth
 
+            @yield('content')
+
+            @else
+
+            <a href="/login" class="mt-3 fw-bold fs-large text-muted">Please Log In before accessing School Content</a>
+
+            @endauth
+          </div>
           @include('layout.partials.footer')
+
+              
 
           <div class="content-backdrop fade"></div>
         </div>

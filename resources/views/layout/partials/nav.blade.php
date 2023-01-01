@@ -41,10 +41,17 @@
                               <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
+                          @auth
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
+                            <span class="fw-semibold d-block">{{auth()->use()->name}}</span>
                             <small class="text-muted">Admin</small>
                           </div>
+                          @else
+                          <div class="flex-grow-1">
+                            <span class="fw-semibold d-block">Login</span>
+                            <small class="text-muted">---</small>
+                          </div>
+                          @endauth
                         </div>
                       </a>
                     </li>

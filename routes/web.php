@@ -7,6 +7,7 @@ use App\Http\Controllers\RegisteredUnitsController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\UnitActivityController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\UserController;
 use App\Models\Department;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,19 @@ use Illuminate\Support\Facades\Route;
 
 // Root Route
 Route::get('/', [UnitController::class, 'index']);
+
+// Authentication Routes
+Route::get('/login', function() {
+    return view('authentication/login');
+});
+
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');
+
+Route::post('/users', [UserController::class, 'store']);
+
+Route::post('/users/authenticate', [UserController::class, 'authenticate'])->name('login');
+
+Route::post('/logout', [UserController::class, 'logout']);
 
 // Unit Routes + Unit Activity Routes
 Route::post('/units/create', [UnitController::class, 'store']);

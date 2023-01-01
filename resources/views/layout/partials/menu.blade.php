@@ -108,16 +108,18 @@
         </ul>
       </li>
       <li class="menu-item">
-        <a href="#" class="menu-link">
+        <a href="/account" class="menu-link">
           <i class="menu-icon tf-icons bx bxs-user-account"></i>
           <div data-i18n="Analytics">Account</div>
         </a>
       </li>
       <li class="menu-item">
-        <a href="#" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-log-out"></i>
-          <div data-i18n="Analytics">Log Out</div>
-        </a>
+        <form action="/logout" method="post">
+          @csrf
+          <button class="align-items-center menu-link border-0 bg-white" type="submit">
+            <i class="menu-icon tf-icons bx bx-log-out"></i> Log Out
+          </button>
+        </form>
       </li>
     </ul>
   </aside>
