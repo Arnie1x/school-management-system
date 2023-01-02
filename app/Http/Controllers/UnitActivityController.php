@@ -35,6 +35,8 @@ class UnitActivityController extends Controller
             'description' => 'required',
         ]);
 
+        $formFields['author'] = auth()->user()->id;
+
         UnitActivity::create($formFields);
         
         return Redirect::to('/units/'.$id);

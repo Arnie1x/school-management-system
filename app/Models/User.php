@@ -31,6 +31,13 @@ class User extends Authenticatable
     public function application(): HasOne {
         return $this->hasOne(Application::class, 'user_id', 'id');
     }
+    public function admin(): HasOne {
+        return $this->hasOne(Administrator::class, 'user_id');
+    }
+    public function toString($id) {
+        $user = User::find($id);
+        return $user->name;
+    }
     /**
      * The attributes that are mass assignable.
      *

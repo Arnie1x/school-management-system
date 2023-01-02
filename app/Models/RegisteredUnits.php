@@ -12,8 +12,11 @@ class RegisteredUnits extends Model
 {
     use HasFactory;
 
-    public function students(): BelongsToMany {
-        return $this->belongsToMany(Student::class, 'id');
+    // public function students(): BelongsToMany {
+    //     return $this->belongsToMany(Student::class, 'students', 'student', 'students');
+    // }
+    public function units(): BelongsToMany {
+        return $this->belongsToMany(Unit::class, 'registered_units', 'id', 'unit');
     }
     
 }

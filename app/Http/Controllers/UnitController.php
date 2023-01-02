@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Unit;
 use App\Models\Course;
+use App\Models\RegisteredUnits;
 use App\Models\UnitActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -12,8 +13,12 @@ class UnitController extends Controller
 {
     // Show all Units
     public function index() {
+        // dd(RegisteredUnits::query()->where('student', auth()->user()->student->id)->get());
+
+        // dd(Unit::getRegistered());
         return view('main_student', [
-            'units' => Unit::latest()->paginate(9)
+            'units' => Unit::getRegistered()->toQuery()->latest()->paginate(9),
+            // 'registeredUnits' => RegisteredUnits::query()->where('student', auth()->user()->student->id)->get('unit')->units
         ]);
     }
 

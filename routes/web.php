@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentActivityController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UnitActivityController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
+use App\Models\Administrator;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,7 +34,7 @@ Route::get('/', [UnitController::class, 'index'])->middleware('auth');
 
 Route::get('/login', function() {
     return view('authentication/login');
-});
+})->name('login');
 
 Route::get('/register', [UserController::class, 'create']);
 
@@ -54,9 +56,13 @@ Route::get('/registered', function() {
 
 Route::post('/users', [UserController::class, 'store']);
 
-Route::post('/users/authenticate', [UserController::class, 'authenticate'])->name('login');
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 Route::post('/logout', [UserController::class, 'logout']);
+
+Route::put('/account', [UserController::class, 'update']);
+
+Route::get('/account', [UserController::class, 'account']);
 
 // Unit Routes + Unit Activity Routes
 Route::post('/units/create', [UnitController::class, 'store']);
@@ -106,9 +112,11 @@ Route::get('/departments/{id}/{activity_id}/delete', [DepartmentActivityControll
 
 // Admin Routes
 
-Route::get('/admin', function() {
-    return view('admin/admin');
-});
+Route::post('/admin/create', [AdministratorController::class, 'store']);
+
+Route::get('/admin/create', [AdministratorController::class, 'create']);
+
+Route::get('/admin', [AdministratorController::class, 'index']);
 
 // Application Routes
 Route::get('/applications/student', [ApplicationController::class, 'student']);

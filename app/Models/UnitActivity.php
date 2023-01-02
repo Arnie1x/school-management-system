@@ -26,6 +26,6 @@ class UnitActivity extends Model
         //         return $activity;
         //     }
         // }
-        return self::all()->where('unit', $unit_id);
+        return self::all()->where('unit', $unit_id)->sortByDesc('created_at');
     }
 }

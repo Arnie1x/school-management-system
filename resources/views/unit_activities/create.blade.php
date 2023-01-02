@@ -20,7 +20,7 @@
                 <div class="mb-3">
                     <label for="description" class="form-label">Activity Description</label>
                     <input class="form-control" type="text" id="description" name="description"
-                        placeholder="Descriptiion..." value="{{old('description')}}"/>
+                        placeholder="Description..." value="{{old('description')}}"/>
                     @error('description')
                         <p class="text-danger">{{$message}}</p>
                     @enderror

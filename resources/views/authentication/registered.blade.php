@@ -113,7 +113,7 @@
                       </g>
                     </svg>
                   </span>
-                  <span class="app-brand-text demo text-body fw-bolder">logo</span>
+                  <span class="app-brand-text demo text-body fw-bolder">study</span>
                 </a>
               </div>
               <!-- /Logo -->

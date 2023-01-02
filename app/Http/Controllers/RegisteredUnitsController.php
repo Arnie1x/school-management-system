@@ -20,18 +20,18 @@ class RegisteredUnitsController extends Controller
 
         if (count(RegisteredUnits::query()->where([
             'unit' => $id,
-            'student' => 1
+            'student' => auth()->user()->student->id
         ])->get()) > 0) {
             return $this->index();
         }
         $registeredUnit = new RegisteredUnits([
-            'student' => 1,
+            'student' => auth()->user()->student->id,
             'unit' => $id
         ]);
 
         $registeredUnit->save();
 
-        return $this->index();
+        return back();
     }
 
     public function create() {

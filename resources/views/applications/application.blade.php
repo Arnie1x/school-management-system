@@ -18,11 +18,13 @@
                     <div>
                         <a href="/applications/{{$application['id']}}/accept"
                         class="btn btn-primary btn-sm me-2 mb-4">Accept</a>
-                        <a href="/applications/student/{{$application['id']}}/reject"
+                        <a href="/applications/{{$application['id']}}/reject"
                         class="btn btn-outline-danger btn-sm me-2 mb-4">Reject</a>
                     </div>
                 </div>
-                <p class="card-subtitle text-black">Course: {{$application->user->name}}</p>
+                @if (auth()->user()->student)
+                    <p class="card-subtitle text-black">Course: {{auth()->user()->student->courseToString(auth()->user()->student->course_enrolled)}}</p>                    
+                @endif
                 <p class="card-text text-muted mt-2">{{$application->user->email}}</p>
                 <small class="text-black">{{$application->user->created_at}}</small>
             </div>

@@ -18,4 +18,8 @@ class Student extends Model
     public function user(): BelongsTo {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function courseToString($id) {
+        $course = Course::find($id);
+        return $course->name;
+    }
 }
