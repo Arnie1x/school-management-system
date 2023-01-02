@@ -28,7 +28,7 @@
                                 @if ($unit['administrator'] != null && $lecturer['id'] == $unit['administrator'])
                                     selected
                                 @endif
-                                >{{auth()->user()->toString($lecturer['id'])}}</option>
+                                >{{auth()->user()->toString($lecturer['user_id'])}}</option>
                                 @endforeach
                             </select>
                             @error('administrator')

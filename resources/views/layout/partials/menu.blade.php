@@ -70,14 +70,20 @@
 
     <ul class="menu-inner py-1">
       <!-- Dashboard/Home -->
-      <li class="menu-item active">
+      <li class="menu-item 
+      {{ (request()->is('student*')) ? 'active' : '' }}
+      {{ (request()->is('lecturer*')) ? 'active' : '' }}
+      {{ (request()->is('staff*')) ? 'active' : '' }}
+      {{ (request()->is('department*')) ? 'active' : '' }}
+      {{ (request()->is('units*')) ? 'active' : '' }}
+      {{ (request()->is('admin*')) ? 'active' : '' }}">
         <a href="#" class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
           <div data-i18n="Analytics">Home</div>
         </a>
       </li>
 
-      <!-- Courses -->
+      {{-- <!-- Courses -->
       <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-layout"></i>
@@ -106,8 +112,8 @@
             </a>
           </li>
         </ul>
-      </li>
-      <li class="menu-item">
+      </li> --}}
+      <li class="menu-item {{ (request()->is('account*')) ? 'active' : '' }}">
         <a href="/account" class="menu-link">
           <i class="menu-icon tf-icons bx bxs-user-account"></i>
           <div data-i18n="Analytics">Account</div>

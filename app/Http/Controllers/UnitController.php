@@ -13,13 +13,25 @@ use Illuminate\Support\Facades\Redirect;
 class UnitController extends Controller
 {
     // Show all Units
-    public function index() {
-        // dd(RegisteredUnits::query()->where('student', auth()->user()->student->id)->get());
-
-        // dd(Unit::getRegistered());
+    public function student() {
+        if (Unit::getRegistered() == null) {
+            return view('main_student', [
+                'units' => array()
+            ]);
+        }
         return view('main_student', [
-            'units' => Unit::getRegistered()->toQuery()->latest()->paginate(9),
-            // 'registeredUnits' => RegisteredUnits::query()->where('student', auth()->user()->student->id)->get('unit')->units
+            'units' => Unit::getRegistered()->toQuery()->paginate(9),
+        ]);
+    }
+
+    public function lecturer() {
+        if (Unit::forLecturers() == null) {
+            return view('main_lecturer', [
+                'units' => array()
+            ]);
+        }
+        return view('main_lecturer', [
+            'units' => Unit::forLecturers()->toQuery()->paginate(9),
         ]);
     }
 

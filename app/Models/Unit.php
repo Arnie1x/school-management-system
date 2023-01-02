@@ -26,18 +26,22 @@ class Unit extends Model
     public static function getRegistered() {
         $units = self::all();
         $registered = RegisteredUnits::query()->where('student', auth()->user()->student->id)->pluck('unit')->all();
-
-        // $newUnits = $units;
-
-        // foreach ($units as $unit){
-        //     foreach($registered as $register){
-        //         if ($unit['id'] != $register) {
-        //             $units->forget($unit['id']);
-        //         }
-        //     }
-        // }
-        
+        if ($registered == null) {
+            return null;
+        }
         return $units->only($registered);
 
+    }
+
+    public static function forLecturers() {
+        $units = self::all();
+        // dd(Unit::query()->where('administrator', auth()->user()->lecturer->id)->pluck('administrator')->all());
+        $registered = Unit::query()->where('administrator', auth()->user()->lecturer->id)->pluck('id')->all();
+        if ($registered == null) {
+            return null;
+        }
+        else {
+            return $units->only($registered);
+        }
     }
 }

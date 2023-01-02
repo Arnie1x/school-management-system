@@ -30,11 +30,11 @@ use Illuminate\Support\Facades\Route;
 
 // Main Route
 Route::get('/', function() {
-    return redirect('/staff');
+    return redirect('/lecturer');
 })->middleware('lecturer');
 
-Route::get('/student', [UnitController::class, 'index'])->middleware('auth');
-Route::get('/lecturer', [UnitController::class, 'index'])->middleware('auth');
+Route::get('/student', [UnitController::class, 'student'])->middleware('auth');
+Route::get('/lecturer', [UnitController::class, 'lecturer'])->middleware('auth');
 Route::get('/staff', [DepartmentController::class, 'index'])->middleware('auth');
 
 // Authentication Routes
