@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentActivityController;
 use App\Http\Controllers\DepartmentController;
@@ -28,14 +29,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Main Route
-Route::get('/', function() {
-    return redirect('/lecturer');
-})->middleware('lecturer');
+// Main Routes
+Route::get('/', [Controller::class, 'index'])->middleware('auth');
+/** */
 
-Route::get('/student', [UnitController::class, 'student'])->middleware('auth');
-Route::get('/lecturer', [UnitController::class, 'lecturer'])->middleware('auth');
-Route::get('/staff', [DepartmentController::class, 'index'])->middleware('auth');
+Route::get('/student', [UnitController::class, 'student'])->middleware('main');
+Route::get('/lecturer', [UnitController::class, 'lecturer'])->middleware('main');
+Route::get('/staff', [DepartmentController::class, 'index'])->middleware('main');
 
 // Authentication Routes
 
@@ -43,102 +43,102 @@ Route::get('/login', function() {
     return view('authentication/login');
 })->name('login');
 
-Route::get('/register', [UserController::class, 'create']);
+Route::get('/register', [UserController::class, 'create'])->middleware('auth');
 
-Route::get('/register/student', [StudentController::class, 'create']);
+Route::get('/register/student', [StudentController::class, 'create'])->middleware('auth');
 
-Route::get('/register/lecturer', [LecturerController::class, 'create']);
+Route::get('/register/lecturer', [LecturerController::class, 'create'])->middleware('auth');
 
-Route::get('/register/staff', [StaffController::class, 'create']);
+Route::get('/register/staff', [StaffController::class, 'create'])->middleware('auth');
 
-Route::post('/register/student', [StudentController::class, 'store']);
+Route::post('/register/student', [StudentController::class, 'store'])->middleware('auth');
 
-Route::post('/register/lecturer', [LecturerController::class, 'store']);
+Route::post('/register/lecturer', [LecturerController::class, 'store'])->middleware('auth');
 
-Route::post('/register/staff', [StaffController::class, 'store']);
+Route::post('/register/staff', [StaffController::class, 'store'])->middleware('auth');
 
 Route::get('/registered', function() {
     return view('authentication/registered');
-});
+})->middleware('auth');
 
-Route::post('/users', [UserController::class, 'store']);
+Route::post('/users', [UserController::class, 'store'])->middleware('auth');
 
-Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+Route::post('/users/authenticate', [UserController::class, 'authenticate'])->middleware('auth');
 
-Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
-Route::put('/account', [UserController::class, 'update']);
+Route::put('/account', [UserController::class, 'update'])->middleware('auth');
 
-Route::get('/account', [UserController::class, 'account']);
+Route::get('/account', [UserController::class, 'account'])->middleware('auth');
 
 // Unit Routes + Unit Activity Routes
-Route::post('/units/create', [UnitController::class, 'store']);
+Route::post('/units/create', [UnitController::class, 'store'])->middleware('auth');
 
-Route::get('/units/create', [UnitController::class, 'create']);
+Route::get('/units/create', [UnitController::class, 'create'])->middleware('auth');
 
-Route::get('/units/register', [RegisteredUnitsController::class, 'index']);
+Route::get('/units/register', [RegisteredUnitsController::class, 'index'])->middleware('auth');
 
-Route::get('/units/register/{id}', [RegisteredUnitsController::class, 'register']);
+Route::get('/units/register/{id}', [RegisteredUnitsController::class, 'register'])->middleware('auth');
 
-Route::put('/units/manage', [UnitController::class, 'update']);
+Route::put('/units/manage', [UnitController::class, 'update'])->middleware('auth');
 
-Route::get('/units/manage', [UnitController::class, 'manage']);
+Route::get('/units/manage', [UnitController::class, 'manage'])->middleware('auth');
 
 
-Route::get('/units/{id}', [UnitController::class, 'show']);
+Route::get('/units/{id}', [UnitController::class, 'show'])->middleware('auth');
 
-Route::get('/units/{id}/create', [UnitActivityController::class, 'create']);
+Route::get('/units/{id}/create', [UnitActivityController::class, 'create'])->middleware('auth');
 
-Route::post('/units/{id}/create', [UnitActivityController::class, 'store']);
+Route::post('/units/{id}/create', [UnitActivityController::class, 'store'])->middleware('auth');
 
-Route::get('/units/{id}/delete', [UnitController::class, 'delete']);
+Route::get('/units/{id}/delete', [UnitController::class, 'delete'])->middleware('auth');
 
-Route::get('/units/{id}/{activity_id}', [UnitActivityController::class, 'showFromUnit']);
+Route::get('/units/{id}/{activity_id}', [UnitActivityController::class, 'showFromUnit'])->middleware('auth');
 
-Route::get('/units/{id}/{activity_id}/delete', [UnitActivityController::class, 'delete']);
+Route::get('/units/{id}/{activity_id}/delete', [UnitActivityController::class, 'delete'])->middleware('auth');
 
 
 // Course Routes
-Route::post('/courses/create', [CourseController::class, 'store']);
+Route::post('/courses/create', [CourseController::class, 'store'])->middleware('auth');
 
-Route::get('/courses/create', [CourseController::class, 'create']);
+Route::get('/courses/create', [CourseController::class, 'create'])->middleware('auth');
 
 // School Routes
-Route::post('/schools/create', [SchoolController::class, 'store']);
+Route::post('/schools/create', [SchoolController::class, 'store'])->middleware('auth');
 
-Route::get('/schools/create', [SchoolController::class, 'create']);
+Route::get('/schools/create', [SchoolController::class, 'create'])->middleware('auth');
 
 //Department Routes + Department Activity Routes
 
-Route::post('/departments/create', [DepartmentController::class, 'store']);
+Route::post('/departments/create', [DepartmentController::class, 'store'])->middleware('auth');
 
-Route::get('/departments/create', [DepartmentController::class, 'create']);
+Route::get('/departments/create', [DepartmentController::class, 'create'])->middleware('auth');
 
-Route::get('/departments/{id}', [DepartmentController::class, 'show']);
+Route::get('/departments/{id}', [DepartmentController::class, 'show'])->middleware('auth');
 
-Route::get('/departments/{id}/create', [DepartmentActivityController::class, 'create']);
+Route::get('/departments/{id}/create', [DepartmentActivityController::class, 'create'])->middleware('auth');
 
-Route::post('/departments/{id}/create', [DepartmentActivityController::class, 'store']);
+Route::post('/departments/{id}/create', [DepartmentActivityController::class, 'store'])->middleware('auth');
 
-Route::get('/departments/{id}/delete', [DepartmentController::class, 'delete']);
+Route::get('/departments/{id}/delete', [DepartmentController::class, 'delete'])->middleware('auth');
 
-Route::get('/departments/{id}/{activity_id}/delete', [DepartmentActivityController::class, 'delete']);
+Route::get('/departments/{id}/{activity_id}/delete', [DepartmentActivityController::class, 'delete'])->middleware('auth');
 
 // Admin Routes
 
-Route::post('/admin/create', [AdministratorController::class, 'store']);
+Route::post('/admin/create', [AdministratorController::class, 'store'])->middleware('auth');
 
-Route::get('/admin/create', [AdministratorController::class, 'create']);
+Route::get('/admin/create', [AdministratorController::class, 'create'])->middleware('auth');
 
-Route::get('/admin', [AdministratorController::class, 'index']);
+Route::get('/admin', [AdministratorController::class, 'index'])->middleware('auth');
 
 // Application Routes
-Route::get('/applications/student', [ApplicationController::class, 'student']);
+Route::get('/applications/student', [ApplicationController::class, 'student'])->middleware('auth');
 
-Route::get('/applications/lecturer', [ApplicationController::class, 'lecturer']);
+Route::get('/applications/lecturer', [ApplicationController::class, 'lecturer'])->middleware('auth');
 
-Route::get('/applications/staff', [ApplicationController::class, 'staff']);
+Route::get('/applications/staff', [ApplicationController::class, 'staff'])->middleware('auth');
 
-Route::get('/applications/{id}/accept', [ApplicationController::class, 'accept']);
+Route::get('/applications/{id}/accept', [ApplicationController::class, 'accept'])->middleware('auth');
 
-Route::get('/applications/{id}/reject', [ApplicationController::class, 'reject']);
+Route::get('/applications/{id}/reject', [ApplicationController::class, 'reject'])->middleware('auth');

@@ -17,20 +17,19 @@ class MainMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        dd($request);
-        if (auth()->user()->application != null) {
-            if (auth()->user()->application->student != null) {
-                return Redirect::to('/student');
-            }
-            if (auth()->user()->application->lecturer != null) {
-                return Redirect::to('/lecturer');
-            }
-            if (auth()->user()->application->staff != null) {
-                return Redirect::to('/staff');
-            }
-        }
-        else {
-            return Redirect::to('/admin');
-        }
+        // if (auth()->user()->application != null) {
+        //     if (auth()->user()->application->student != null) {
+        //         return Redirect::to('/student');
+        //     }
+        //     if (auth()->user()->application->lecturer != null) {
+        //         return Redirect::to('/lecturer');
+        //     }
+        //     if (auth()->user()->application->staff != null) {
+        //         return Redirect::to('/staff');
+        //     }
+        // }
+        // else {
+        //     return Redirect::to('/admin');
+        // }
     }
 }
