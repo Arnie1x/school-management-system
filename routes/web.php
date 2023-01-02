@@ -1,14 +1,17 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentActivityController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\RegisteredUnitsController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\StaffController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UnitActivityController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
-use App\Models\Department;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,20 +26,31 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Root Route
-Route::get('/', [UnitController::class, 'index']);
+Route::get('/', [UnitController::class, 'index'])->middleware('auth');
 
 // Authentication Routes
+
 Route::get('/login', function() {
     return view('authentication/login');
 });
 
 Route::get('/register', [UserController::class, 'create']);
 
-Route::get('/register/student', [UserController::class, 'studentApplication']);
+Route::get('/register/student', [StudentController::class, 'create']);
 
-Route::get('/register/lecturer', [UserController::class, 'lecturerApplication']);
+Route::get('/register/lecturer', [LecturerController::class, 'create']);
 
-Route::get('/register/staff', [UserController::class, 'staffApplication']);
+Route::get('/register/staff', [StaffController::class, 'create']);
+
+Route::post('/register/student', [StudentController::class, 'store']);
+
+Route::post('/register/lecturer', [LecturerController::class, 'store']);
+
+Route::post('/register/staff', [StaffController::class, 'store']);
+
+Route::get('/registered', function() {
+    return view('authentication/registered');
+});
 
 Route::post('/users', [UserController::class, 'store']);
 
@@ -95,3 +109,14 @@ Route::get('/departments/{id}/{activity_id}/delete', [DepartmentActivityControll
 Route::get('/admin', function() {
     return view('admin/admin');
 });
+
+// Application Routes
+Route::get('/applications/student', [ApplicationController::class, 'student']);
+
+Route::get('/applications/lecturer', [ApplicationController::class, 'lecturer']);
+
+Route::get('/applications/staff', [ApplicationController::class, 'staff']);
+
+Route::get('/applications/{id}/accept', [ApplicationController::class, 'accept']);
+
+Route::get('/applications/{id}/reject', [ApplicationController::class, 'reject']);

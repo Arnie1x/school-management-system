@@ -117,81 +117,11 @@
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-2">Staff Application</h4>
+              <h4 class="mb-2">User Application</h4>
+              <span>Thank you for applying to join our institution. Come back after a few days to check on your application status.</span>
+              <span>Good Luck!</span>
 
-              <form action="/register/staff" method="POST" class="mb-3">
-                @csrf
-                <div class="mb-3">
-                  <label for="username" class="form-label">Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="name"
-                    name="name"
-                    placeholder="Enter your name" 
-                    value="{{old('name')}}" 
-                    autofocus
-                  />
-                  @error('name')
-                        <p class="text-danger">{{$message}}</p>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" value="{{old('email')}}"/>
-                  @error('email')
-                        <p class="text-danger">{{$message}}</p>
-                    @enderror
-                </div>
-                <div class="mb-3 form-password-toggle">
-                  <label class="form-label" for="password">Password</label>
-                  <div class="input-group input-group-merge">
-                    <input
-                      type="password"
-                      id="password"
-                      class="form-control"
-                      name="password"
-                      placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                      aria-describedby="password"
-                    />
-                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                  </div>
-                  @error('password')
-                      <p class="text-danger">{{$message}}</p>
-                  @enderror
-                </div>
-                <div class="mb-3 form-password-toggle">
-                  <label class="form-label" for="password_confirmation">Confirm Password</label>
-                  <div class="input-group input-group-merge">
-                    <input
-                      type="password"
-                      id="password_confirmation"
-                      class="form-control"
-                      name="password_confirmation"
-                      placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                      aria-describedby="password_confirmation"
-                    />
-                    @error('password_confirmation')
-                        <p class="text-danger">{{$message}}</p>
-                    @enderror
-                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                  </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="department">Department</label>
-                    <select id="department" name="department" class="select2 form-select">
-                        <option value="">Select</option>
-                        @foreach ($departments as $department)
-                            <option value="{{$department['id']}}">{{$department['name']}}</option>
-                        @endforeach
-                    </select>
-                    @error('department')
-                        <p class="text-danger">{{$message}}</p>
-                    @enderror
-                </div>
-                
-                <button type="submit" class="btn btn-primary d-grid w-100">Apply</button>
-              </form>
+          
             </div>
           </div>
           <!-- Register Card -->

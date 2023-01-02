@@ -43,8 +43,8 @@
                           </div>
                           @auth
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">{{auth()->use()->name}}</span>
-                            <small class="text-muted">Admin</small>
+                            <span class="fw-semibold d-block">{{auth()->user()->name}}</span>
+                            <small class="text-muted">{{auth()->user()->application->first()->role}}</small>
                           </div>
                           @else
                           <div class="flex-grow-1">

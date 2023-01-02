@@ -119,7 +119,7 @@
               <!-- /Logo -->
               <h4 class="mb-2">Student Application</h4>
 
-              <form action="/users" method="POST" class="mb-3">
+              <form action="/register/student" method="POST" class="mb-3">
                 @csrf
                 <div class="mb-3">
                   <label for="username" class="form-label">Name</label>

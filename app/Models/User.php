@@ -3,8 +3,14 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Staff;
+use App\Models\Student;
+use App\Models\Lecturer;
+use App\Models\Application;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,6 +19,18 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function student(): HasOne {
+        return $this->hasOne(Student::class, 'user_id');
+    }
+    public function lecturer(): HasOne {
+        return $this->hasOne(Lecturer::class, 'user_id');
+    }
+    public function staff(): HasOne {
+        return $this->hasOne(Staff::class, 'user_id');
+    }
+    public function application(): HasOne {
+        return $this->hasOne(Application::class, 'user_id', 'id');
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -43,13 +61,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function student(): BelongsTo {
-        return $this->belongsTo(Student::class, 'user_id');
-    }
-    public function lecturer(): BelongsTo {
-        return $this->belongsTo(Lecturer::class, 'user_id');
-    }
-    public function staff(): BelongsTo {
-        return $this->belongsTo(Staff::class, 'user_id');
-    }
+    
 }
