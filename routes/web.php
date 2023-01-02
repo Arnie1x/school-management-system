@@ -14,6 +14,7 @@ use App\Http\Controllers\UnitActivityController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Models\Administrator;
+use App\Models\Department;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,8 +28,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Root Route
-Route::get('/', [UnitController::class, 'index'])->middleware('auth');
+// Main Route
+Route::get('/', function() {
+    return redirect('/staff');
+})->middleware('lecturer');
+
+Route::get('/student', [UnitController::class, 'index'])->middleware('auth');
+Route::get('/lecturer', [UnitController::class, 'index'])->middleware('auth');
+Route::get('/staff', [DepartmentController::class, 'index'])->middleware('auth');
 
 // Authentication Routes
 
@@ -73,6 +80,11 @@ Route::get('/units/register', [RegisteredUnitsController::class, 'index']);
 
 Route::get('/units/register/{id}', [RegisteredUnitsController::class, 'register']);
 
+Route::put('/units/manage', [UnitController::class, 'update']);
+
+Route::get('/units/manage', [UnitController::class, 'manage']);
+
+
 Route::get('/units/{id}', [UnitController::class, 'show']);
 
 Route::get('/units/{id}/create', [UnitActivityController::class, 'create']);
@@ -85,6 +97,7 @@ Route::get('/units/{id}/{activity_id}', [UnitActivityController::class, 'showFro
 
 Route::get('/units/{id}/{activity_id}/delete', [UnitActivityController::class, 'delete']);
 
+
 // Course Routes
 Route::post('/courses/create', [CourseController::class, 'store']);
 
@@ -96,6 +109,7 @@ Route::post('/schools/create', [SchoolController::class, 'store']);
 Route::get('/schools/create', [SchoolController::class, 'create']);
 
 //Department Routes + Department Activity Routes
+
 Route::post('/departments/create', [DepartmentController::class, 'store']);
 
 Route::get('/departments/create', [DepartmentController::class, 'create']);

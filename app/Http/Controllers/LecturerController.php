@@ -35,7 +35,7 @@ class LecturerController extends Controller
 
         Application::create([
             'user_id' => $user->id,
-            'role' => 'student',
+            'role' => 'lecturer',
             'status' => 'pending'
         ]);
 

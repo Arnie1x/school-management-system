@@ -25,8 +25,8 @@
                         <p class="text-danger">{{$message}}</p>
                     @enderror
                 </div>
-                <input class="form-control d-none" type="text" id="author" name="author" value="9" />
                 <input class="form-control d-none" type="text" id="department_id" name="department_id" value="{{$department['id']}}" />
+                <input type="hidden" id="author" name="author" value="{{auth()->user()->id}}" />
             </div>
             <div class="mt-2">
                 <button type="submit" class="btn btn-primary me-2">Add Activity</button>

@@ -25,6 +25,6 @@ class DepartmentActivity extends Model
         //         return $activity;
         //     }
         // }
-        return self::all()->where('department_id', $department_id);
+        return self::all()->where('department_id', $department_id)->sortByDesc('created_at');
     }
 }

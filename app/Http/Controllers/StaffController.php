@@ -43,7 +43,7 @@ class StaffController extends Controller
 
         Application::create([
             'user_id' => $user->id,
-            'role' => 'student',
+            'role' => 'staff',
             'status' => 'pending'
         ]);
 

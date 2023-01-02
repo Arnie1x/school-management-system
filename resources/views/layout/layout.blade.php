@@ -20,7 +20,7 @@
 
           <div class="container">
             @auth
-
+            
             @yield('content')
 
             @else

@@ -38,6 +38,10 @@ class User extends Authenticatable
         $user = User::find($id);
         return $user->name;
     }
+    public function getUser($id) {
+        $user = User::find($id);
+        return $user;
+    }
     /**
      * The attributes that are mass assignable.
      *

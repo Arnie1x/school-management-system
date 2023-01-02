@@ -22,8 +22,9 @@
                         class="btn btn-outline-danger btn-sm me-2 mb-4">Reject</a>
                     </div>
                 </div>
-                @if (auth()->user()->student)
-                    <p class="card-subtitle text-black">Course: {{auth()->user()->student->courseToString(auth()->user()->student->course_enrolled)}}</p>                    
+                @if ($application->role == 'student')
+                    {{-- <p class="card-subtitle text-black">Course: {{auth()->user()->getUser($application->user->id)->student->courseToString(auth()->user()->student->course_enrolled)}}</p> --}}
+                    <p class="card-subtitle text-black">Course: {{$application->user->student->courseToString($application->user->student->course_enrolled)}}</p>                    
                 @endif
                 <p class="card-text text-muted mt-2">{{$application->user->email}}</p>
                 <small class="text-black">{{$application->user->created_at}}</small>

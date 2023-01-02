@@ -44,7 +44,9 @@
                           @auth
                           <div class="flex-grow-1">
                             <span class="fw-semibold d-block">{{auth()->user()->name}}</span>
+                            @if (auth()->user()->application != null)
                             <small class="text-muted">{{auth()->user()->application->first()->role}}</small>
+                            @endif
                           </div>
                           @else
                           <div class="flex-grow-1">

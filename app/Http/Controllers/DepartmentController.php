@@ -11,11 +11,12 @@ use Illuminate\Support\Facades\Redirect;
 class DepartmentController extends Controller
 {
     public function index() {
-        $random_department = rand(0, count(Department::all()) - 1);
+        $department = auth()->user()->staff->department;
+        // dd(Department::find($department));
         return view('departments/department', [
-            'department' => Department::find($random_department),
+            'department' => Department::find($department),
             'departments' => Department::all(),
-            'activities' => DepartmentActivity::findFromDepartment($random_department),
+            'activities' => DepartmentActivity::findFromDepartment($department),
         ]);
     }
 

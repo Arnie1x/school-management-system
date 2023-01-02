@@ -37,7 +37,7 @@ class DepartmentActivityController extends Controller
 
         DepartmentActivity::create($formFields);
         
-        return Redirect::to('/');
+        return Redirect::to('/staff');
     }
     public function delete($id, $activity_id) {
         DepartmentActivity::destroy($activity_id);
