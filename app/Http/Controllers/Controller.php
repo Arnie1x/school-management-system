@@ -15,13 +15,13 @@ class Controller extends BaseController
     public function index() {
 
         if (auth()->user()->application != null) {
-            if (auth()->user()->application->student != null) {
+            if (auth()->user()->application->role == 'student') {
                 return Redirect::to('/student');
             }
-            if (auth()->user()->application->lecturer != null) {
+            if (auth()->user()->application->role == 'lecturer') {
                 return Redirect::to('/lecturer');
             }
-            if (auth()->user()->application->staff != null) {
+            if (auth()->user()->application->role == 'staff') {
                 return Redirect::to('/staff');
             }
         }

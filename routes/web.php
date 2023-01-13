@@ -33,29 +33,29 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [Controller::class, 'index'])->middleware('auth');
 /** */
 
-Route::get('/student', [UnitController::class, 'student'])->middleware('main');
-Route::get('/lecturer', [UnitController::class, 'lecturer'])->middleware('main');
-Route::get('/staff', [DepartmentController::class, 'index'])->middleware('main');
+Route::get('/student', [UnitController::class, 'student']);
+Route::get('/lecturer', [UnitController::class, 'lecturer']);
+Route::get('/staff', [DepartmentController::class, 'index']);
 
 // Authentication Routes
 
-Route::get('/login', function() {
+Route::get('/login',[ function() {
     return view('authentication/login');
-})->name('login');
+}])->name('login');
 
-Route::get('/register', [UserController::class, 'create'])->middleware('auth');
+Route::get('/register', [UserController::class, 'create']);
 
-Route::get('/register/student', [StudentController::class, 'create'])->middleware('auth');
+Route::get('/register/student', [StudentController::class, 'create']);
 
-Route::get('/register/lecturer', [LecturerController::class, 'create'])->middleware('auth');
+Route::get('/register/lecturer', [LecturerController::class, 'create']);
 
-Route::get('/register/staff', [StaffController::class, 'create'])->middleware('auth');
+Route::get('/register/staff', [StaffController::class, 'create']);
 
-Route::post('/register/student', [StudentController::class, 'store'])->middleware('auth');
+Route::post('/register/student', [StudentController::class, 'store']);
 
-Route::post('/register/lecturer', [LecturerController::class, 'store'])->middleware('auth');
+Route::post('/register/lecturer', [LecturerController::class, 'store']);
 
-Route::post('/register/staff', [StaffController::class, 'store'])->middleware('auth');
+Route::post('/register/staff', [StaffController::class, 'store']);
 
 Route::get('/registered', function() {
     return view('authentication/registered');
@@ -63,9 +63,9 @@ Route::get('/registered', function() {
 
 Route::post('/users', [UserController::class, 'store'])->middleware('auth');
 
-Route::post('/users/authenticate', [UserController::class, 'authenticate'])->middleware('auth');
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
-Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+Route::post('/logout', [UserController::class, 'logout']);
 
 Route::put('/account', [UserController::class, 'update'])->middleware('auth');
 

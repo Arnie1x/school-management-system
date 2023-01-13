@@ -21,4 +21,9 @@
     </a>
     @endforeach
 </div>
+@if (count($units) > 0)
+<div class="d-flex justify-content-center mt-5">
+    {!! $units->links() !!}
+</div>
+@endif
 @endsection

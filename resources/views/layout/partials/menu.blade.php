@@ -77,7 +77,7 @@
       {{ (request()->is('department*')) ? 'active' : '' }}
       {{ (request()->is('units*')) ? 'active' : '' }}
       {{ (request()->is('admin*')) ? 'active' : '' }}">
-        <a href="#" class="menu-link">
+        <a href="/" class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
           <div data-i18n="Analytics">Home</div>
         </a>
